@@ -1,4 +1,3 @@
-
 ## Description
 This PHP 8-based system is designed for a health plan management company. It facilitates user registration, user-specific permission control, company registration, and document uploads.
 
@@ -10,11 +9,11 @@ This PHP 8-based system is designed for a health plan management company. It fac
 
 ## Screenshots
 
-[![Screenshot 1](screenshots/screenshot1.png)
-*Caption for Screenshot 1*
+[![Screenshot 1](https://github.com/swesley400/system_da_abracm/raw/main/public/users.png)](https://github.com/swesley400/system_da_abracm/blob/main/public/users.png)
+*Registered Users*
 
-![Screenshot 2](screenshots/screenshot2.png)
-*Caption for Screenshot 2*](https://github.com/swesley400/system_da_abracm/blob/main/public/createUsers.png)
+![Screenshot 2](https://github.com/swesley400/system_da_abracm/raw/main/public/createUsers.png)
+*Create User*
 
 ## Installation
 1. Clone the repository: `git clone https://github.com/yourusername/health-plan-management.git`
