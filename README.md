@@ -19,7 +19,7 @@ This PHP 8-based system is designed for a health plan management company. It fac
 1. Clone the repository: `git clone https://github.com/yourusername/health-plan-management.git`
 2. Navigate to the project directory: `cd health-plan-management`
 3. Set up your PHP environment with version 8 or higher.
-4. Configure your database settings in `config.php`.
+4. Configure your database settings in `conection.php`.
 5. Import the database schema from `database.sql`.
 6. Start your PHP server and navigate to the project in your web browser.
 
