@@ -26,5 +26,3 @@ This PHP 8-based system is designed for a health plan management company. It fac
 ## Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests.
 
-## License
-This project is licensed under the [MIT License](LICENSE).
