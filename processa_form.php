@@ -26,11 +26,6 @@ if (!empty($_POST["login"]) && !empty($_POST["password"])) {
         $_SESSION["newsession"] = "logged";
 
 
-        echo  $_SESSION["permission_type"] ;
-
-        echo $_SESSION["permission_type"];
-        echo $result['permission_name'];
-       
         header("Location: home.php?files=true");
         exit();
 

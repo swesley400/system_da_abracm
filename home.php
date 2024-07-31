@@ -5,7 +5,7 @@ $permission_type = $_SESSION["permission_type"];
 
 
 if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
-  
+
     header("Location: index.php");
     exit();
 }
@@ -34,6 +34,23 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+
+    <style>
+        .table-responsive {
+            overflow-x: auto;
+        }
+        @media (max-width: 768px) {
+            .modal-dialog {
+                width: 100%;
+                margin: 0;
+            }
+            .modal-content {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
 
     <title>Home</title>
 </head>
@@ -63,18 +80,18 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
         <nav class="nav">
             <div>
                 <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i>
-                        <img class="nav_logo-name" src="./public/logo.png" alt="logo" width="150px" height="150px">
+                    <img class="nav_logo-name" src="./public/logo.png" alt="logo" width="150px" height="150px">
                     </span>
                 </a>
                 <div class="nav_list">
                     <?php
-                        if ($permission_type === "adm") {
-                            echo
-                                '
+                    if ($permission_type === "adm") {
+                        echo
+                            '
                                     <a href="?empresas=true" class="nav_link active"><i class="bi bi-building"></i></i>
                                     <span class="nav_name">Empresas</span>
                                     </a>';
-                        }
+                    }
                     ?>
                     <?php
                     if ($permission_type === "adm") {
@@ -90,8 +107,8 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
                     </a>
                 </div>
             </div>
-            <a class="nav_link" id="sign_out"> <i class='bx bx-log-out nav_icon'></i> <span
-                    class="nav_name">Sair</span> </a>
+            <a class="nav_link" id="sign_out"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Sair</span>
+            </a>
         </nav>
     </div>
 
@@ -102,7 +119,7 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
                 include 'user.php';
             }
         }
-        
+
         if ($permission_type == 'adm') {
             if (isset($_GET['empresas']) && $_GET['empresas'] === 'true') {
                 include 'business.php';
@@ -142,14 +159,14 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
 
         $(document).ready(function () {
             const modal = document.getElementById("novoUser");
-            if(modal){
+            if (modal) {
                 modal.addEventListener('click', function (e) {
-                console.log("Fui clicado")
-                $('#exampleModal').modal('show');
-                $('#exampleModal').modal('show').style = '!importante width: 100%;';
+                    console.log("Fui clicado")
+                    $('#exampleModal').modal('show');
+                    $('#exampleModal').modal('show').style = '!importante width: 100%;';
                 });
             }
-            
+
         });
 
     </script>
@@ -159,11 +176,11 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
 
         $(document).ready(function () {
             const modalClose = document.getElementById("close");
-            
-            if(modalClose){
+
+            if (modalClose) {
                 modalClose.addEventListener('click', function (e) {
-                console.log("Fui clicado")
-                $('#exampleModal').modal('hide');
+                    console.log("Fui clicado")
+                    $('#exampleModal').modal('hide');
                 });
             }
 
@@ -175,9 +192,9 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
 
         $(document).ready(function () {
             const modalClose = document.getElementById("cancel");
-            if(modalClose){
+            if (modalClose) {
                 modalClose.addEventListener('click', function (e) {
-                $('#exampleModal').modal('hide');
+                    $('#exampleModal').modal('hide');
                 });
             }
         });
@@ -188,13 +205,13 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
 
         $(document).ready(function () {
             const modal = document.getElementById("novoArquivo");
-            if(modal){
+            if (modal) {
                 modal.addEventListener('click', function (e) {
                     $('#achiveModal').modal('show');
                     $('#achiveModal').modal('show').style = '!importante width: 100%;';
                 });
             }
-         
+
         });
 
     </script>
@@ -204,13 +221,13 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
         $(document).ready(function () {
             const modalClose = document.getElementById("closeModalAchives");
 
-            if(modalClose) {
+            if (modalClose) {
                 modalClose.addEventListener('click', function (e) {
                     console.log("Fui clicado")
                     $('#achiveModal').modal('hide');
                 });
             }
-            
+
         });
 
     </script>
@@ -219,51 +236,50 @@ if (!isset($_SESSION["nome"]) && !isset($_SESSION["email"])) {
 
         $(document).ready(function () {
             const modalClose = document.getElementById("modalCancelAchives");
-            if(modalClose){
+            if (modalClose) {
                 modalClose.addEventListener('click', function (e) {
                     $('#achiveModal').modal('hide');
                 });
             }
-          
+
         });
 
     </script>
 
-<script>
-    $(document).ready(function () {
-        const modal = document.getElementById("novoUser");
-        if (modal) {
-            modal.addEventListener('click', function (e) {
-                console.log("Fui clicado");
-                $('#novaEmpresaModal').modal('show');
-                $('#novaEmpresaModal').modal('show').style = '!important; width: 100%;';
-            });
-        }
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            const modal = document.getElementById("novoUser");
+            if (modal) {
+                modal.addEventListener('click', function (e) {
+                    $('#novaEmpresaModal').modal('show');
+                    $('#novaEmpresaModal').modal('show').style = '!important; width: 100%;';
+                });
+            }
+        });
+    </script>
 
-<script>
-    $(document).ready(function () {
-        const modalClose = document.getElementById("close");
-        if (modalClose) {
-            modalClose.addEventListener('click', function (e) {
-                console.log("Fui clicado");
-                $('#novaEmpresaModal').modal('hide');
-            });
-        }
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            const modalClose = document.getElementById("close");
+            if (modalClose) {
+                modalClose.addEventListener('click', function (e) {
+                    console.log("Fui clicado");
+                    $('#novaEmpresaModal').modal('hide');
+                });
+            }
+        });
+    </script>
 
-<script>
-    $(document).ready(function () {
-        const modalClose = document.getElementById("cancel");
-        if (modalClose) {
-            modalClose.addEventListener('click', function (e) {
-                $('#novaEmpresaModal').modal('hide');
-            });
-        }
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            const modalClose = document.getElementById("cancel");
+            if (modalClose) {
+                modalClose.addEventListener('click', function (e) {
+                    $('#novaEmpresaModal').modal('hide');
+                });
+            }
+        });
+    </script>
 
 </body>
 
