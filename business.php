@@ -15,8 +15,7 @@ if (isset($_GET['delete'])) {
 
     try {
         $stmt->execute();
-        header("Location: home.php?empresas=true");
-        exit();
+        reload();
     } catch (Exception $err) {
         echo $err->getMessage();
     }
@@ -61,11 +60,15 @@ function salvaEmpresa($numero_ans, $nome_empresa, $site_empresa, $cidade, $estad
 
     try {
         $stmt->execute();
-        header("Location: home.php?empresas=true");
-        exit();
+        reload();
     } catch (Exception $err) {
         echo $err->getMessage();
     }
+}
+
+
+function reload() {
+    echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=home.php?empresas=true">';
 }
 
 function atualizaEmpresa($empresa_id, $numero_ans, $nome_empresa, $site_empresa, $cidade, $estado)

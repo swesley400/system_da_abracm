@@ -22,8 +22,7 @@ if (isset($_GET['delete'])) {
 
     try {
         $stmt->execute();
-        header("Location: home.php?files=true");
-        exit();
+        reload();
     } catch (Exception $err) {
         echo "Erro: " . htmlspecialchars($err->getMessage());
     }
@@ -71,6 +70,11 @@ function montaform()
     return "<select class='form-control m-1' name='user_permission' id='exampleFormControlSelect1'>" . $textOptions . "</select>";
 }
 
+
+function reload() {
+    echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=home.php?files=true">';
+}
+
 if (isset($_GET['downloadFile'])) {
     $fileName = urldecode($_GET['downloadFile']);
     $filePath = __DIR__ . '/public/' . $fileName;
@@ -109,8 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $stmt->execute();
 
-            header("Location: home.php?files=true");
-            exit();
+            reload();
         } catch (PDOException $e) {
             echo "Erro ao salvar no banco de dados: " . htmlspecialchars($e->getMessage());
         }
@@ -141,17 +144,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="GET" action="home.php" class="form-inline d-flex">
                 <input type="hidden" name="files" value="true">
                 <input type="text" name="search_achive_name" class="form-control m-1" placeholder="Nome do Arquivo" value="' . htmlspecialchars($searchAchiveName) . '">
-                <input type="text" name="search_id_externo" class="form-control m-1" placeholder="ID Externo" value="' . htmlspecialchars($searchIdExterno) . '">
+                <input type="text" name="search_id_externo" class="form-control m-1" placeholder="Nome/Indentificao" value="' . htmlspecialchars($searchIdExterno) . '">';
+    if ($_SESSION["permission_type"] === "adm") {
+        echo '
+                <div class="form-check m-1 d-flex align-items-center">
+                    <input type="checkbox" class="form-check-input" name="include_deleted" id="include_deleted" ' . (isset($_GET['include_deleted']) ? 'checked' : '') . '>
+                    <label class="form-check-label m-1" for="include_deleted">Deletados</label>
+                </div>';
+    }
+    echo '
                 <button type="submit" class="btn btn-primary m-1">Pesquisar</button>
             </form>
     </div>';
-    
     if ($_SESSION["permission_type"] === "adm") {
         echo '<div>
             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#achiveModal" id="novoArquivo">Novo Arquivo</button>
         </div>';
     }
-    
+
     echo '</div>';
 
     if (!empty($results)) {
@@ -161,8 +171,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <thead class="bg-light">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">N° do documento</th>
-                <th scope="col">Nome do documento</th>
+                <th scope="col">Nome ou Indentificação</th>
+                <th scope="col">Nome do arquivo</th>
                 <th scope="col">Status</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -218,16 +228,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Cadastrar um novo arquivo</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <label for="documentNumber">Número do Documento:</label>
+                        <label for="documentNumber">Nome ou Indentifição:</label>
                         <input type="text" class="form-control" name="documentNumber" id="documentNumber" required>
                         <label for="customFile">Escolha o arquivo:</label>
                         <input type="file" class="form-control" id="customFile" name="customFile" required>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-modal-novo-arquivo">Fechar</button>
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                     </div>
@@ -242,16 +251,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Cadastrar um novo arquivo</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <label for="documentNumber">Número do Documento:</label>
+                        <label for="documentNumber">Nome ou Indentifição:</label>
                         <input type="text" class="form-control" name="documentNumber" id="documentNumber" required>
                         <label for="customFile">Escolha o arquivo:</label>
                         <input type="file" class="form-control" id="customFile" name="customFile" required>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-modal-novo-arquivo-2">Fechar</button>
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                     </div>
